@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      margin: 0;
+      padding: 0;
+    }
+
+    .invoice-box {
+      width: 794px; /* A4 width */
+      margin: auto;
+      padding: 40px;
+      border: 1px solid #eee;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #1e3a8a;
+      padding-bottom: 15px;
+    }
+
+    .header img {
+      height: 55px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #1e3a8a;
+    }
+
+    /* ===== COMPANY + INVOICE INFO ===== */
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+
+    .company-details {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .invoice-details {
+      text-align: right;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== BILL TO ===== */
+    .bill-to {
+      margin-top: 30px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .bill-to strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    table thead {
+      background: #1e3a8a;
+      color: #fff;
+    }
+
+    table th,
+    table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    table th {
+      text-align: left;
+    }
+
+    table td:last-child,
+    table th:last-child {
+      text-align: right;
+    }
+
+    /* ===== TOTAL BOX ===== */
+    .totals {
+      width: 40%;
+      margin-left: auto;
+      margin-top: 25px;
+      font-size: 14px;
+    }
+
+    .totals table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .totals td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .totals tr:last-child td {
+      font-weight: bold;
+      background: #f1f5f9;
+      font-size: 16px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      text-align: center;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="invoice-box">
+
+    <!-- HEADER -->
+    <div class="header">
+      <img src="{{LOGO_URL}}" alt="Company Logo" />
+      <h1>INVOICE</h1>
+    </div>
+
+    <!-- COMPANY + INVOICE INFO -->
+    <div class="top-section">
+      <div class="company-details">
+        <strong>3Arrow Digital Services</strong><br/>
+        303/A, Relcon House Premises Co-op Society Ltd<br/>
+        M.G. Road, Vile Parle East, Mumbai – 400057<br/>
+        Phone: +91 9820921592<br/>
+        Email: info@3arrowdigitalservices.com
+      </div>
+
+      <div class="invoice-details">
+        <strong>Invoice No:</strong> {{INVOICE_NO}}<br/>
+        <strong>Date:</strong> {{DATE}}
+      </div>
+    </div>
+
+    <!-- BILL TO -->
+    <div class="bill-to">
+      <strong>Billed To</strong>
+      {{CLIENT_NAME}}<br/>
+      {{CLIENT_PHONE}}<br/>
+      {{CLIENT_EMAIL}}
+    </div>
+
+    <!-- SERVICES TABLE -->
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{SERVICE_ROWS}}
+      </tbody>
+    </table>
+
+    <!-- TOTALS -->
+    <div class="totals">
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td>₹{{SUBTOTAL}}</td>
+        </tr>
+        <tr>
+          <td>GST (18%)</td>
+          <td>₹{{GST}}</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>₹{{TOTAL}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      GSTIN: XXXXXXXX<br/>
+      This is a computer-generated invoice. No signature required.
+    </div>
+
+  </div>
+</body>
+</html>
